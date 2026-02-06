@@ -1,18 +1,12 @@
 import string
-import nltk
-nltk.download('punkt')
-nltk.download('popular')
-nltk.download('averaged_perceptron_tagger_eng')
 leters = string.ascii_uppercase
 def redact(original_string):
     new_string = ""
-    tokenized = nltk.word_tokenize(original_string)
-    tagged = nltk.pos_tag(tokenized)
-    for pair in tagged:
-        if(pair[1] == 'NNP'):
-            new_string+= "redacted "
+    for word in original_string.split(" "):
+        if(word[0] in leters):
+            new_string+="redacted "
         else:
-            new_string+= pair[0] + " "
+            new_string+=word + " "
     return new_string
 
 eb_bio = "Erin came to Kehillah after getting her PhD in Cognitive Science \
